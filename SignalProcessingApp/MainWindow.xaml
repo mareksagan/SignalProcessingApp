@@ -2,11 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SignalProcessingApp"
+        xmlns:v="clr-namespace:SignalProcessingApp.Views"
+        xmlns:vm="clr-namespace:SignalProcessingApp.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Signal Processing App" Height="350" Width="525"
+        Content="{Binding DataContext, RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <DataTemplate
+            DataType="{x:Type vm:MainWindowViewModel}">
+            <v:MainWindowView />
+        </DataTemplate>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    
 </Window>
