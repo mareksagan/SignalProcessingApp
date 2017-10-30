@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="SignalProcessingApp.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             DataContext="{Binding Main, Source={StaticResource Locator}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <oxy:PlotView x:Name="SignalPlot" Model="{Binding PlotModel}" Margin="10,23,156,10"/>
+
+        <Label x:Name="Label" Content="Choose the input &#xD;&#xA;signal to be generated:" HorizontalAlignment="Right" Margin="0,36,23,0" VerticalAlignment="Top" Width="133" Height="43"/>
+        
+        <RadioButton x:Name="SineRadioButton" Content="Sine wave" HorizontalAlignment="Right" Margin="0,84,80,0" VerticalAlignment="Top" Command="{Binding SineRadioButtonCommand}" IsChecked="True"/>
+        <RadioButton x:Name="TriangularRadioButton" Content="Triangular wave" HorizontalAlignment="Right" Margin="0,104,50,0" VerticalAlignment="Top" Command="{Binding TriangularRadioButtonCommand}"/>
+        <RadioButton x:Name="SquareRadioButton" Content="Square wave" HorizontalAlignment="Right" Margin="0,124,65,0" VerticalAlignment="Top" Command="{Binding SquareRadioButtonCommand}"/>
+
+    </Grid>
+</UserControl>
