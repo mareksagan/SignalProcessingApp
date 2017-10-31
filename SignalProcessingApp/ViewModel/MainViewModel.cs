@@ -24,12 +24,20 @@ namespace SignalProcessingApp.ViewModel
     /// </summary>
     public partial class MainViewModel : ViewModelBase
     {
-        private const int UpdateInterval = 6;
+        /// <summary>
+        /// Property describing the update interval of the plot refreshing methods
+        /// </summary>
+        private const int UpdateInterval = 10;
+        /// <summary>
+        /// Field used for measuring the elapsing time in plot refreshing
+        /// </summary>
         private readonly Timer Timer;
-
+        /// <summary>
+        /// Property representing the LineSeries of the plot
+        /// </summary>
         public LineSeries Series { get; set; }
         /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
+        /// Initializes a new instance of the MainViewModel class
         /// </summary>
         public MainViewModel()
         {
@@ -60,7 +68,9 @@ namespace SignalProcessingApp.ViewModel
             TriangularRadioButtonCommand = new RelayCommand(Triangular);
             SquareRadioButtonCommand = new RelayCommand(Square);
         }
-
+        /// <summary>
+        /// Method which sets up the PlotModel of the plot
+        /// </summary>
         private void SetupModel()
         {
             Timer.Change(Timeout.Infinite, Timeout.Infinite);
@@ -87,7 +97,6 @@ namespace SignalProcessingApp.ViewModel
                 LineStyle = LineStyle.Solid,
                 StrokeThickness = 0.5,
                 Color = OxyColors.Red,
-                ToolTip = "Don't worry, it updates eventually",
                 MarkerType = MarkerType.Diamond
             });
 
@@ -95,9 +104,13 @@ namespace SignalProcessingApp.ViewModel
 
             RaisePropertyChanged("PlotModel");
 
-            Timer.Change(100, UpdateInterval);
+            Timer.Change(1000, UpdateInterval);
         }
 
+        /// <summary>
+        /// Event handler for the Timer class.
+        /// Refreshes the plot at a specified rate
+        /// </summary>
         private void OnTimerElapsed(object state)
         {
             lock (PlotModel.SyncRoot)
@@ -108,6 +121,9 @@ namespace SignalProcessingApp.ViewModel
             PlotModel.InvalidatePlot(true);
         }
 
+        /// <summary>
+        /// Method which updates the plot with new DataPoints
+        /// </summary>
         private void Update()
         {
             int n = 0;
@@ -131,17 +147,17 @@ namespace SignalProcessingApp.ViewModel
         }
 
         /// <summary>
-        /// An instance of the SignalGenerator class
+        /// SignalGenerator class field
         /// </summary>
         private SignalGenerator SignalGen;
 
         /// <summary>
-        /// An instance of the SignalReader class
+        /// SignalReader class field
         /// </summary>
         private SignalReader SignalRed;
 
         /// <summary>
-        /// A wrapper method instantiating an object of the SignalGenerator class
+        /// Wrapper method instantiating an object of the SignalGenerator class
         /// </summary>
         private SignalGenerator StartSignalGenerator()
         {
@@ -149,7 +165,7 @@ namespace SignalProcessingApp.ViewModel
         }
 
         /// <summary>
-        /// A wrapper method instantiating an object of the SignalReader class
+        /// Wrapper method instantiating an object of the SignalReader class
         /// </summary>
         private SignalReader StartSignalReader()
         {
@@ -157,12 +173,12 @@ namespace SignalProcessingApp.ViewModel
         }
 
         /// <summary>
-        /// A class used for an easier access to the plot properties
+        /// Field used for an easier access to the plot properties (MVVM)
         /// </summary>
         public PlotModel PlotModel { get; private set; }
 
         /// <summary>
-        /// A property describing the number of total points on the plot
+        /// Property describing the number of total points on the plot
         /// </summary>
         public int TotalNumberOfPoints { get; private set; }
     }
