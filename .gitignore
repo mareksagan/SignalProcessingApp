@@ -243,6 +243,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-# GitHub language detection
- *.* linguist-language=C#
