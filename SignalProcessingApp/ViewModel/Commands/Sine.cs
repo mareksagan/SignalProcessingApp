@@ -8,7 +8,7 @@
         /// </summary>
         public void Sine()
         {
-            SignalGen.SetSine();
+            SignalGen.setSine();
         }
     }
     

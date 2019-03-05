@@ -8,7 +8,7 @@
         /// </summary>
         public void Triangular()
         {
-            SignalGen.SetTriangular();
+            SignalGen.setTriangular();
         }
     }
 

@@ -8,7 +8,7 @@
         /// </summary>
         public void Square()
         {
-            SignalGen.SetSquare();
+            SignalGen.setSquare();
         }
     }
 

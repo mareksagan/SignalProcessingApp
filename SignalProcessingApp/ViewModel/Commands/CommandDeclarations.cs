@@ -8,10 +8,12 @@ namespace SignalProcessingApp.ViewModel
         /// Command bound to the SineRadioButton
         /// </summary>
         public RelayCommand SineRadioButtonCommand { get; set; }
+        
         /// <summary>
         /// Command bound to the TriangularRadioButton
         /// </summary>
         public RelayCommand TriangularRadioButtonCommand { get; set; }
+
         /// <summary>
         /// Command bound to the SquareRadioButton
         /// </summary>

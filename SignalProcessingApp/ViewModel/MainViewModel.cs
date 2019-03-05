@@ -28,14 +28,17 @@ namespace SignalProcessingApp.ViewModel
         /// Property describing the update interval of the plot refreshing methods
         /// </summary>
         private const int UpdateInterval = 10;
+
         /// <summary>
         /// Field used for measuring the elapsing time in plot refreshing
         /// </summary>
         private readonly Timer Timer;
+        
         /// <summary>
         /// Property representing the LineSeries of the plot
         /// </summary>
         public LineSeries Series { get; set; }
+        
         /// <summary>
         /// Initializes a new instance of the MainViewModel class
         /// </summary>
@@ -68,6 +71,7 @@ namespace SignalProcessingApp.ViewModel
             TriangularRadioButtonCommand = new RelayCommand(Triangular);
             SquareRadioButtonCommand = new RelayCommand(Square);
         }
+        
         /// <summary>
         /// Method which sets up the PlotModel of the plot
         /// </summary>
@@ -115,7 +119,7 @@ namespace SignalProcessingApp.ViewModel
         {
             lock (PlotModel.SyncRoot)
             {
-                Update();
+                update();
             }
 
             PlotModel.InvalidatePlot(true);
@@ -124,7 +128,7 @@ namespace SignalProcessingApp.ViewModel
         /// <summary>
         /// Method which updates the plot with new DataPoints
         /// </summary>
-        private void Update()
+        private void update()
         {
             int n = 0;
 
@@ -133,7 +137,7 @@ namespace SignalProcessingApp.ViewModel
             double x = Series.Points.Count > 0 ? Series.Points[Series.Points.Count - 1].X + 1 : 0;
             if (Series.Points.Count >= 50)
                 Series.Points.RemoveAt(0);
-            double y = SignalRed.ReadValue();
+            double y = SignalRed.readValue();
             
             Series.Points.Add(new DataPoint(x, y));
 
@@ -161,7 +165,7 @@ namespace SignalProcessingApp.ViewModel
         /// </summary>
         private SignalGenerator StartSignalGenerator()
         {
-            return SignalGenerator.GetSignalGenerator();
+            return SignalGenerator.getSignalGenerator();
         }
 
         /// <summary>
@@ -169,7 +173,7 @@ namespace SignalProcessingApp.ViewModel
         /// </summary>
         private SignalReader StartSignalReader()
         {
-            return SignalReader.GetSignalReader();
+            return SignalReader.getSignalReader();
         }
 
         /// <summary>
