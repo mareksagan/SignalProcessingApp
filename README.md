@@ -7,7 +7,7 @@ which sends the signal via a virtual COM port. At the same time, the ViewModel u
 to read the values from the paired COM port. The values are displayed in real time on a scrollable plot.
 
 ## Installation
-* Install this `https://www.eltima.com/download/vspd.exe`
+* Install [this](https://www.eltima.com/download/vspd.exe)
 * Go to the `Manage ports` tab and choose `COM99` in `First port:` and `COM100` in `Second port:`
 * You can change the default COM ports in the `SignalGenerator`/`SignalReader` constructor/portName property and restart the connection
 * Click the `Add Pair` button and start the application
